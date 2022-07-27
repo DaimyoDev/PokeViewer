@@ -10,23 +10,15 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.6.6",
-    "@react-query-firebase/auth": "^1.0.0-dev.1",
-    "@react-query-firebase/firestore": "^1.0.0-dev.6",
-    "firebase": "^9.9.1",
     "next": "12.2.3",
     "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "zustand": "^4.0.0"
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@types/node": "18.6.1",
-    "@types/react": "18.0.15",
-    "@types/react-dom": "18.0.6",
     "autoprefixer": "^10.4.7",
     "eslint": "8.20.0",
     "eslint-config-next": "12.2.3",
     "postcss": "^8.4.14",
-    "tailwindcss": "^3.1.6",
-    "typescript": "4.7.4"
+    "tailwindcss": "^3.1.6"
   }
 }
