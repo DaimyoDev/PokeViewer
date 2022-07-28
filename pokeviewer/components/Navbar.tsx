@@ -2,25 +2,39 @@ import Link from "next/link";
 
 const Navbar: any = () => {
   return (
-    <div>
-      <h1>Navbar!</h1>
-      <ul>
-        <li>
-          <Link href={"/item"}>
-            <a>Items</a>
-          </Link>
-        </li>
-        <li>
-          <Link href={"/pokemon"}>
-            <a>Pokemon</a>
-          </Link>
-        </li>
-        <li>
-          <Link href={"/locations"}>
-            <a>Locations</a>
-          </Link>
-        </li>
-      </ul>
+    <div className="flex flex-row w-screen text-xl mt-5 text-slate-50 mb-10">
+      <h1 className="justify-self-start text-3xl ml-[10rem] mt-[-0.30rem] font-light italic tracking-widest font-montserrat">
+        <span className="text-4xl text-red-500">Poke</span>Viewer
+      </h1>
+      <div className="flex flex-row justify-end w-screen">
+        <ul className="flex flex-row">
+          <li className="mr-[5rem] mt-[0.5rem] hover:text-red-500 transition-all duration-300">
+            <Link href={"/"}>
+              <a>Home</a>
+            </Link>
+          </li>
+          <li className="mr-[5rem] mt-[0.5rem] hover:text-red-500 transition-all duration-300">
+            <Link href={"/item"}>
+              <a>Items</a>
+            </Link>
+          </li>
+          <li className="mr-[5rem] mt-[0.5rem] hover:text-red-500 transition-all duration-300">
+            <Link href={"/pokemon"}>
+              <a>Pokemon</a>
+            </Link>
+          </li>
+          <li className="mr-[5rem] mt-[0.5rem] hover:text-red-500 transition-all duration-300">
+            <Link href={"/moves"}>
+              <a>Moves</a>
+            </Link>
+          </li>
+          <li className="mr-[20rem] mt-[0.5rem] hover:text-red-500 transition-all duration-300">
+            <Link href={"/locations"}>
+              <a>Locations</a>
+            </Link>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };
