@@ -202,6 +202,21 @@ const Pokeman: NextPage = ({ pokeman }: any) => {
         </div>
         <h1 className="mt-3">Height: {pokeman.height}</h1>
         <h1 className="mb-10">Weight: {pokeman.weight}</h1>
+        <div className="">
+          <h1 className="mt-3 mb-3 italic uppercase text-3xl font-montserrat">
+            Base Stats:
+          </h1>
+          {pokeman.stats.map((stat: any) => {
+            console.log(stat);
+            return (
+              <div className="flex flex-row justify-center mb-2 uppercase">
+                <h1>
+                  {stat.stat.name.replace("-", " ")}: {stat.base_stat}
+                </h1>
+              </div>
+            );
+          })}
+        </div>
         <div>
           <h1 className="mt-3 mb-10 italic uppercase text-3xl font-montserrat">
             Moves:
@@ -210,8 +225,11 @@ const Pokeman: NextPage = ({ pokeman }: any) => {
             {pokeman.moves.map((move: any) => {
               return (
                 <Link href={`/moves/${move.move.name}`}>
-                  <div className="capitalize m-5 text-red-600 font-medium text-xl bg-slate-300 py-3 px-8 rounded-xl shadow-lg shadow-gray-600 hover:bg-slate-600 transition-all duration-200 hover:cursor-pointer">
-                    <a key={move.move.name} className="capitalize">
+                  <div className="m-5">
+                    <a
+                      key={move.move.name}
+                      className="capitalize m-5 text-red-600 font-medium text-xl bg-slate-300 py-3 px-8 rounded-xl shadow-lg shadow-gray-600 hover:bg-slate-600 transition-all duration-200 hover:cursor-pointer"
+                    >
                       {move.move.name.replace("-", " ")}
                     </a>
                   </div>

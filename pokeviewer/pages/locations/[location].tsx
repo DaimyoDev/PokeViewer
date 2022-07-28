@@ -18,16 +18,6 @@ const Move: NextPage = ({ location }: any) => {
     return (
       <div className="text-3xl text-slate-50 capitalize">
         <h1 className="m-3">Region: {location.region.name}</h1>
-        <h1 className="m-3">
-          Generation:{" "}
-          {location.game_indices.map((gen: any) => {
-            return (
-              <div className="uppercase font-light">
-                <h1>{gen.generation.name.replace("-", " ")}</h1>
-              </div>
-            );
-          })}
-        </h1>
       </div>
     );
   };

@@ -38,7 +38,7 @@ const Moves: NextPage = ({ moves }: any) => {
             if (move.name.startsWith(search)) {
               return (
                 <div className=" m-5">
-                  <Link href={`/pokemon/${move.name}`}>
+                  <Link href={`/moves/${move.name}`}>
                     <a className="capitalize m-3 text-red-600 font-medium text-xl bg-slate-300 py-3 px-8 rounded-xl shadow-lg shadow-gray-600 hover:bg-slate-600 transition-all duration-200 ">
                       {move.name.replace("-", " ")}
                     </a>
