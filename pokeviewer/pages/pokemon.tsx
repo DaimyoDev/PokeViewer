@@ -16,10 +16,7 @@ const Pokemon: NextPage = ({ pokemon }: any) => {
       <input
         type="search"
         onChange={(e) => {
-          const search = () => {
-            setSearch(e.target.value);
-          };
-          setTimeout(search, 1000);
+          setSearch(e.target.value);
         }}
       ></input>
 
@@ -36,7 +33,7 @@ const Pokemon: NextPage = ({ pokemon }: any) => {
               </div>
             );
           } else {
-            if (pokeman.name.startsWith(search)) {
+            if (pokeman.name.includes(search)) {
               return (
                 <div className=" m-5">
                   <Link href={`/pokemon/${pokeman.name}`}>

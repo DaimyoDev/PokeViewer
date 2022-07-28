@@ -2,7 +2,6 @@ import type { NextPage } from "next";
 import Link from "next/link";
 
 const Item: NextPage = ({ item }: any) => {
-  console.log(item.held_by_pokemon);
   return (
     <div>
       <h1 className="text-5xl text-center uppercase text-slate-50 font-montserrat font-light">

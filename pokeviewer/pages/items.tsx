@@ -15,10 +15,7 @@ const Items: NextPage = ({ items }: any) => {
       <input
         type="search"
         onChange={(e) => {
-          const search = () => {
-            setSearch(e.target.value);
-          };
-          setTimeout(search, 1000);
+          setSearch(e.target.value);
         }}
       ></input>
       <div className="grid grid-rows-4 grid-cols-5 mt-10">
@@ -34,7 +31,7 @@ const Items: NextPage = ({ items }: any) => {
               </div>
             );
           } else {
-            if (item.name.startsWith(search)) {
+            if (item.name.includes(search)) {
               return (
                 <div className=" m-5">
                   <Link href={`/items/${item.name}`}>

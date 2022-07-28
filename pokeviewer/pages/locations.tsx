@@ -16,10 +16,7 @@ const Moves: NextPage = ({ locations }: any) => {
       <input
         type="search"
         onChange={(e) => {
-          const search = () => {
-            setSearch(e.target.value);
-          };
-          setTimeout(search, 1000);
+          setSearch(e.target.value);
         }}
       ></input>
       <div className="grid grid-rows-4 grid-cols-5 mt-10">
@@ -35,7 +32,7 @@ const Moves: NextPage = ({ locations }: any) => {
               </div>
             );
           } else {
-            if (location.name.startsWith(search)) {
+            if (location.name.includes(search)) {
               return (
                 <div className=" m-5">
                   <Link href={`/locations/${location.name}`}>
