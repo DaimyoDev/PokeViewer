@@ -14,7 +14,7 @@ const Navbar: any = () => {
             </Link>
           </li>
           <li className="mr-[5rem] mt-[0.5rem] hover:text-red-500 transition-all duration-300">
-            <Link href={"/item"}>
+            <Link href={"/items"}>
               <a>Items</a>
             </Link>
           </li>

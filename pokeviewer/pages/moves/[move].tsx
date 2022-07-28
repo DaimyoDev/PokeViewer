@@ -179,7 +179,7 @@ const Move: NextPage = ({ move }: any) => {
           <h1 className="capitalize mb-10 mt-3">
             Pokemon Who Learn {move.name.replace("-", " ")}:
           </h1>
-          <div className="grid grid-rows-4 grid-cols-4">
+          <div className="grid grid-rows-4 grid-cols-5">
             {move.learned_by_pokemon.map((learned: any) => {
               return (
                 <div className="m-5">
