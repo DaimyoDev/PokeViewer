@@ -16,7 +16,7 @@ const Pokeman: NextPage = ({ pokeman }: any) => {
 
   const getEncounters = () => {
     data.map((encounter: any) => {
-      let encounterArea = encounter.location_area.name.replace("-area", "");
+      let encounterArea = encounter.location_area.name;
       encounters.push(
         <div className="m-5">
           <Link href={`/locations/${encounterArea}`}>

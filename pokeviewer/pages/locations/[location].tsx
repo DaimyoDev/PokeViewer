@@ -9,6 +9,7 @@ const Location: NextPage = ({ location }: any) => {
     },
   });
 
+  console.log(location);
   useMemo(async () => {
     const response = await fetch(
       `https://pokeapi.co/api/v2/location/${location.name.replace("-area", "")}`
