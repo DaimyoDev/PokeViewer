@@ -4,12 +4,12 @@ import Link from "next/link";
 const Item: NextPage = ({ item }: any) => {
   return (
     <div>
-      <h1 className="text-5xl text-center uppercase text-slate-50 font-montserrat font-light">
+      <h1 className="sm:text-5xl text-3xl text-center uppercase text-slate-50 font-montserrat font-light">
         {item.name.replace("-", " ")}
       </h1>
       <img
         src={item.sprites.default}
-        className="m-auto w-[30rem] h-[30rem] object-fill bg-slate-400 rounded-full mb-10 mt-10 shadow-xl shadow-slate-700"
+        className="m-auto sm:w-[30rem] sm:h-[30rem] w-[20rem] object-fill bg-slate-400 rounded-full mb-10 mt-10 shadow-xl shadow-slate-700"
       ></img>
       <h1 className="text-center text-slate-50 text-xl mt-5 capitalize">
         Category: {item.category.name.replace("-", " ")}
@@ -17,7 +17,7 @@ const Item: NextPage = ({ item }: any) => {
       <h1 className="text-center text-slate-50 text-xl mt-5 capitalize">
         Cost: {item.cost}
       </h1>
-      <h1 className="text-center text-slate-50 text-2xl mt-3 mx-[15rem]">
+      <h1 className="text-center text-slate-50 text-2xl mt-3 mx-3 self-center">
         Effects:{" "}
         {item.effect_entries.map((effect: any) => {
           return (
@@ -30,7 +30,7 @@ const Item: NextPage = ({ item }: any) => {
       <h1 className="text-center text-slate-50 text-4xl mt-5 capitalize mb-10 font-montserrat font-light">
         Held By Pokemon:
       </h1>
-      <div className="grid grid-rows-4 grid-cols-5">
+      <div className="grid sm:grid-rows-4 sm:grid-cols-5 text-center">
         {item.held_by_pokemon.map((pokemon: any) => {
           console.log(pokemon);
           return (

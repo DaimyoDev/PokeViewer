@@ -27,7 +27,7 @@ const Location: NextPage = ({ location }: any) => {
   const getLocationName = () => {
     return (
       <div>
-        <h1 className="text-5xl text-center uppercase text-slate-50 font-montserrat font-light">
+        <h1 className="sm:text-5xl text-4xl text-center uppercase text-slate-50 font-montserrat font-light">
           {location.name.replace("-", " ").replace("-area", " ")}
         </h1>
         <div></div>
@@ -45,7 +45,7 @@ const Location: NextPage = ({ location }: any) => {
           <h1 className="text-3xl text-center text-slate-50 m-3 mb-6">
             Pokemon Encounters:
           </h1>
-          <div className="grid grid-rows-5 grid-cols-5">
+          <div className="grid sm:grid-rows-5 sm:grid-cols-5">
             {location.pokemon_encounters.map((encounter: any) => {
               return (
                 <div className="m-5">

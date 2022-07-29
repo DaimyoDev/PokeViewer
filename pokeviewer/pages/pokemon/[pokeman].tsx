@@ -337,9 +337,9 @@ const Pokeman: NextPage = ({ pokeman }: any) => {
   const content = getPokeData();
 
   return (
-    <div className={`${typeCSS} mt-[-8rem] overflow-y-hidden`}>
+    <div className={`${typeCSS} sm:mt-[-8rem] overflow-y-hidden mt-[-16.8rem]`}>
       <div className={`m-10 text-center text-slate-50 text-xl overflow-hidden`}>
-        <h1 className="text-5xl uppercase font-light font-montserrat pt-[6rem] overflow-hidden">
+        <h1 className="text-4xl uppercase font-light font-montserrat sm:pt-[6rem] overflow-hidden pt-[15rem]">
           {pokeman.id}: {pokeman.name}
         </h1>
         <h1 className="text-3xl uppercase font-light font-montserrat pt-[1rem] overflow-hidden">
@@ -357,7 +357,7 @@ const Pokeman: NextPage = ({ pokeman }: any) => {
       </div>
       <img
         src={pokeman.sprites.front_default}
-        className={`m-auto w-[30rem] h-[30rem] object-fill ${
+        className={`m-auto sm:w-[30rem] sm:h-[30rem] object-fill w-[20rem]  ${
           buttonColor != "" ? buttonColor : "bg-slate-300"
         } rounded-full mb-10 mt-10 shadow-xl ${shadowColor}  `}
       ></img>
@@ -384,14 +384,14 @@ const Pokeman: NextPage = ({ pokeman }: any) => {
         <h1 className="mt-7 mb-1 italic uppercase text-3xl font-montserrat text-slate-50 overflow-hidden">
           Encounters:{" "}
         </h1>
-        <div className="grid grid-rows-3 grid-cols-3 py-3 overflow-hidden">
+        <div className="grid sm:grid-rows-3 sm:grid-cols-3 py-3 overflow-hidden grid-cols-1 grid-rows-1">
           {data.map((encounter: any) => {
             let encounterArea = encounter.location_area.name;
             return (
-              <div className="m-5 mb-3">
+              <div className="mx-1 mt-5 mb-3">
                 <Link href={`/locations/${encounterArea}`}>
                   <a
-                    className={`capitalize m-5 text-slate-50 font-medium text-xl  py-3 px-8 rounded-xl shadow-xl ${shadowColor} ${
+                    className={`capitalize m-5 mx-2 text-slate-50 font-medium text-lg  py-3 px-5 rounded-xl shadow-xl ${shadowColor} ${
                       buttonColor != "" ? buttonColor : "bg-slate-400"
                     } ${
                       hoverColor != "" ? hoverColor : "hover:bg-slate-600"
@@ -411,7 +411,7 @@ const Pokeman: NextPage = ({ pokeman }: any) => {
         <h1 className="mt-3 mb-10 italic uppercase text-3xl font-montserrat text-slate-50 overflow-hidden">
           Moves:
         </h1>
-        <div className="grid grid-rows-3 grid-cols-6 py-3 overflow-hidden mx-10">
+        <div className="grid sm:grid-rows-3 sm:grid-cols-6 py-3 overflow-hidden mx-10 grid-cols-1 grid-rows-1">
           {pokeman.moves.map((move: any) => {
             return (
               <Link href={`/moves/${move.move.name}`}>

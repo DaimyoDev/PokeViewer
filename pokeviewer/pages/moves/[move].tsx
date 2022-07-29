@@ -255,8 +255,8 @@ const Move: NextPage = ({ move }: any) => {
           <h1 className="mt-3"> Move Description: </h1>
           {move.effect_entries.map((effect: any) => {
             return (
-              <div className="mx-[15rem] text-xl font-semibold">
-                <h1>
+              <div className="text-xl font-semibold">
+                <h1 className="self-center mx-1">
                   {effect.effect.replace(
                     "$effect_chance",
                     `${move.effect_chance}`
@@ -267,7 +267,7 @@ const Move: NextPage = ({ move }: any) => {
           })}
         </div>
         <div className="overflow-hidden">
-          <h1 className="capitalize mb-5 mt-3">
+          <h1 className="capitalize mb-5 mt-3 mx-1">
             Pokemon Who Learn {move.name.replace("-", " ")}:
           </h1>
           <div className="mb-7">
@@ -285,7 +285,7 @@ const Move: NextPage = ({ move }: any) => {
               className="text-black text-xl"
             ></input>
           </div>
-          <div className="grid grid-rows-4 grid-cols-5">
+          <div className="grid sm:grid-rows-4 sm:grid-cols-5">
             {move.learned_by_pokemon.map((learned: any) => {
               if (search == "") {
                 return (
@@ -333,9 +333,9 @@ const Move: NextPage = ({ move }: any) => {
 
   return (
     <div
-      className={`flex flex-col text-center ${typeCSS} overflow-y-hidden pointer-events-none mt-[-5.5rem]`}
+      className={`flex flex-col text-center ${typeCSS} overflow-y-hidden pointer-events-none sm:mt-[-5.5rem] mt-[-16.8rem]`}
     >
-      <h1 className="mb-4 pt-[7rem]">{moveName}</h1>
+      <h1 className="mb-4 pt-[17rem] sm:pt-[7rem]">{moveName}</h1>
       <div className={`pb-5 mb-3 pointer-events-auto ${typeCSS} min-h-screen`}>
         {moveData}
       </div>
