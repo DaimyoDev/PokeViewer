@@ -4,7 +4,18 @@ import { useState, useMemo } from "react";
 
 const Pokeman: NextPage = ({ pokeman }: any) => {
   const [data, setData] = useState([]);
-  let encounters: any = [];
+  const [evolution, setEvolution] = useState({
+    generation: {
+      name: "",
+    },
+    evolves_from_species: {
+      name: "",
+    },
+  });
+  let typeCSS = "";
+  let buttonColor = "";
+  let shadowColor = "";
+  let hoverColor = "";
 
   useMemo(async () => {
     const response = await fetch(
@@ -12,48 +23,37 @@ const Pokeman: NextPage = ({ pokeman }: any) => {
     );
 
     setData(await response.json());
+
+    const evoResponse = await fetch(
+      `https://pokeapi.co/api/v2/pokemon-species/${pokeman.name}`
+    );
+    if (evoResponse) {
+      try {
+        setEvolution(await evoResponse.json());
+      } catch (e) {
+        console.log(e);
+      }
+    }
   }, [pokeman]);
-
-  const getEncounters = () => {
-    data.map((encounter: any) => {
-      let encounterArea = encounter.location_area.name;
-      encounters.push(
-        <div className="m-5">
-          <Link href={`/locations/${encounterArea}`}>
-            <a className="capitalize m-3 text-red-600 font-medium text-xl bg-slate-300 py-3 px-8 rounded-xl shadow-lg shadow-gray-600 hover:bg-slate-600 transition-all duration-200">
-              {encounter.location_area.name
-                .replace("-", " ")
-                .replace("-area", "")
-                .replace("-road", " road")}
-            </a>
-          </Link>
-        </div>
-      );
-    });
-  };
-
-  getEncounters();
 
   const getPokeData = () => {
     return (
-      <div className={`m-10 text-center text-slate-50 text-xl`}>
-        <h1 className="text-3xl uppercase font-light font-montserrat">
-          {pokeman.id}: {pokeman.name}
-        </h1>
-        <img
-          src={pokeman.sprites.front_default}
-          className="m-auto w-[30rem] h-[30rem] object-fill bg-slate-400 rounded-full mb-10 mt-10 shadow-xl shadow-slate-700"
-        ></img>
+      <div
+        className={`m-10 mb-2 text-center text-slate-50 text-xl overflow-hidden`}
+      >
         <div>
-          <div className="mb-10">
-            <h1 className="mt-3 mb-3 italic uppercase text-3xl font-montserrat">
+          <div className="mb-3 overflow-hidden">
+            <h1 className="mt-3 mb-1 italic uppercase text-3xl font-montserrat overflow-hidden">
               Abilities:
             </h1>
-            <div className="flex flex-row justify-center">
+            <div className="flex flex-row justify-center overflow-hidden">
               {pokeman.abilities.map((ability: any) => {
                 return (
                   <div className="mr-10">
-                    <h1 key={ability.ability.name} className="capitalize">
+                    <h1
+                      key={ability.ability.name}
+                      className="capitalize overflow-hidden"
+                    >
                       {ability.ability.name.replace("-", " ")}
                     </h1>
                   </div>
@@ -64,7 +64,7 @@ const Pokeman: NextPage = ({ pokeman }: any) => {
         </div>
         <div>
           <div>
-            <h1 className="mt-3 mb-3 italic uppercase text-3xl font-montserrat">
+            <h1 className="mt-3 mb-3 italic uppercase text-3xl font-montserrat overflow-hidden">
               Types:
             </h1>
             {pokeman.types.map((type: any) => {
@@ -72,13 +72,18 @@ const Pokeman: NextPage = ({ pokeman }: any) => {
                 return (
                   <h1
                     key={type.type.name}
-                    className="capitalize text-slate-50 text-2xl"
+                    className="capitalize text-slate-50 text-2xl overflow-hidden"
                   >
                     {type.type.name}
                   </h1>
                 );
               }
               if (type.type.name == "ice") {
+                typeCSS = "bg-sky-800";
+                buttonColor = "bg-sky-500";
+                shadowColor = "shadow-sky-900";
+                hoverColor = "hover:bg-sky-300";
+
                 return (
                   <div className="m-auto ">
                     <h1
@@ -91,26 +96,131 @@ const Pokeman: NextPage = ({ pokeman }: any) => {
                 );
               }
               if (type.type.name == "water") {
+                typeCSS = "bg-blue-800";
+                buttonColor = "bg-blue-500";
+                shadowColor = "shadow-blue-900";
+                hoverColor = "hover:bg-blue-300";
+
                 return (
                   <h1
                     key={type.type.name}
-                    className="capitalize text-blue-700 text-2xl"
+                    className="capitalize text-blue-500 text-2xl"
                   >
                     {type.type.name}
                   </h1>
                 );
               }
               if (type.type.name == "fire") {
+                typeCSS = "bg-red-800";
+                buttonColor = "bg-red-500";
+                shadowColor = "shadow-red-900";
+                hoverColor = "hover:bg-red-300";
+
                 return (
                   <h1
                     key={type.type.name}
-                    className="capitalize text-red-500 text-2xl"
+                    className="capitalize text-red-300 text-2xl"
                   >
                     {type.type.name}
                   </h1>
                 );
               }
               if (type.type.name == "flying") {
+                typeCSS = "bg-slate-800";
+                buttonColor = "bg-slate-500";
+                shadowColor = "shadow-slate-900";
+                hoverColor = "hover:bg-slate-300";
+
+                return (
+                  <h1
+                    key={type.type.name}
+                    className="capitalize text-slate-500 text-2xl"
+                  >
+                    {type.type.name}
+                  </h1>
+                );
+              }
+              if (type.type.name == "poison") {
+                typeCSS = "bg-violet-800";
+                buttonColor = "bg-violet-500";
+                shadowColor = "shadow-violet-900";
+                hoverColor = "hover:bg-violet-300";
+
+                return (
+                  <h1
+                    key={type.type.name}
+                    className="capitalize text-violet-500 text-2xl"
+                  >
+                    {type.type.name}
+                  </h1>
+                );
+              }
+              if (type.type.name == "bug") {
+                typeCSS = "bg-lime-800";
+                buttonColor = "bg-lime-500";
+                shadowColor = "shadow-lime-900";
+                hoverColor = "hover:bg-lime-400";
+
+                return (
+                  <h1
+                    key={type.type.name}
+                    className="capitalize text-lime-300 text-2xl"
+                  >
+                    {type.type.name}
+                  </h1>
+                );
+              }
+              if (type.type.name == "fighting") {
+                typeCSS = "bg-orange-700";
+                buttonColor = "bg-orange-500";
+                shadowColor = "shadow-orange-900";
+                hoverColor = "hover:bg-orange-400";
+
+                return (
+                  <h1
+                    key={type.type.name}
+                    className="capitalize text-orange-300 text-2xl"
+                  >
+                    {type.type.name}
+                  </h1>
+                );
+              }
+              if (type.type.name == "fairy") {
+                typeCSS = "bg-pink-800";
+                buttonColor = "bg-pink-500";
+                shadowColor = "shadow-pink-900";
+                hoverColor = "hover:bg-pink-400";
+
+                return (
+                  <h1
+                    key={type.type.name}
+                    className="capitalize text-pink-300 text-2xl"
+                  >
+                    {type.type.name}
+                  </h1>
+                );
+              }
+              if (type.type.name == "psychic") {
+                typeCSS = "bg-fuchsia-800";
+                buttonColor = "bg-fuchsia-500";
+                shadowColor = "shadow-fuchsia-900";
+                hoverColor = "hover:bg-fuchsia-400";
+
+                return (
+                  <h1
+                    key={type.type.name}
+                    className="capitalize text-fuchsia-500 text-2xl"
+                  >
+                    {type.type.name}
+                  </h1>
+                );
+              }
+              if (type.type.name == "dragon") {
+                typeCSS = "bg-black";
+                buttonColor = "bg-slate-700";
+                shadowColor = "shadow-slate-900";
+                hoverColor = "hover:bg-slate-500";
+
                 return (
                   <h1
                     key={type.type.name}
@@ -120,101 +230,72 @@ const Pokeman: NextPage = ({ pokeman }: any) => {
                   </h1>
                 );
               }
-              if (type.type.name == "poison") {
-                return (
-                  <h1
-                    key={type.type.name}
-                    className="capitalize text-violet-700 text-2xl"
-                  >
-                    {type.type.name}
-                  </h1>
-                );
-              }
-              if (type.type.name == "bug") {
-                return (
-                  <h1
-                    key={type.type.name}
-                    className="capitalize text-lime-500 text-2xl"
-                  >
-                    {type.type.name}
-                  </h1>
-                );
-              }
-              if (type.type.name == "fighting") {
-                return (
-                  <h1
-                    key={type.type.name}
-                    className="capitalize text-orange-500 text-2xl"
-                  >
-                    {type.type.name}
-                  </h1>
-                );
-              }
-              if (type.type.name == "fairy") {
-                return (
-                  <h1
-                    key={type.type.name}
-                    className="capitalize text-pink-500 text-2xl"
-                  >
-                    {type.type.name}
-                  </h1>
-                );
-              }
-              if (type.type.name == "psychic") {
-                return (
-                  <h1
-                    key={type.type.name}
-                    className="capitalize text-pink-700 text-2xl"
-                  >
-                    {type.type.name}
-                  </h1>
-                );
-              }
-              if (type.type.name == "dragon") {
-                return (
-                  <h1
-                    key={type.type.name}
-                    className="capitalize text-black text-2xl"
-                  >
-                    {type.type.name}
-                  </h1>
-                );
-              }
               if (type.type.name == "steel") {
+                typeCSS = "bg-gray-400";
+                buttonColor = "bg-gray-300";
+                shadowColor = "shadow-gray-500";
+                hoverColor = "hover:bg-gray-200";
                 return (
                   <h1
                     key={type.type.name}
-                    className="capitalize text-gray-300 text-2xl"
+                    className="capitalize text-gray-100 text-2xl"
                   >
                     {type.type.name}
                   </h1>
                 );
               }
               if (type.type.name == "electric") {
+                typeCSS = "bg-yellow-600";
+                buttonColor = "bg-yellow-400";
+                shadowColor = "shadow-yellow-700";
+                hoverColor = "hover:bg-yellow-300";
+
                 return (
                   <h1
                     key={type.type.name}
-                    className="capitalize text-yellow-300 text-2xl"
+                    className="capitalize text-yellow-100 text-2xl"
                   >
                     {type.type.name}
                   </h1>
                 );
               }
               if (type.type.name == "grass") {
+                typeCSS = "bg-emerald-800";
+                buttonColor = "bg-emerald-500";
+                shadowColor = "shadow-emerald-900";
+                hoverColor = "hover:bg-emerald-300";
                 return (
                   <h1
                     key={type.type.name}
-                    className="capitalize text-emerald-500 text-2xl"
+                    className="capitalize text-emerald-300 text-2xl"
                   >
                     {type.type.name}
                   </h1>
                 );
               }
               if (type.type.name == "rock") {
+                typeCSS = "bg-amber-600";
+                buttonColor = "bg-amber-300";
+                shadowColor = "shadow-amber-700";
+                hoverColor = "hover:bg-amber-100";
                 return (
                   <h1
                     key={type.type.name}
-                    className="capitalize text-amber-500 text-2xl"
+                    className="capitalize text-amber-300 text-2xl"
+                  >
+                    {type.type.name}
+                  </h1>
+                );
+              }
+              if (type.type.name == "ground") {
+                typeCSS = "bg-amber-800";
+                buttonColor = "bg-amber-700";
+                shadowColor = "shadow-amber-900";
+                hoverColor = "hover:bg-amber-500";
+                return (
+                  <h1
+                    key={type.type.name}
+                    className="capitalize text-amber-700 text-2xl"
                   >
                     {type.type.name}
                   </h1>
@@ -224,7 +305,7 @@ const Pokeman: NextPage = ({ pokeman }: any) => {
               return (
                 <h1
                   key={type.type.name}
-                  className="capitalize text-slate-400 text-2xl"
+                  className="capitalize text-slate-700 text-2xl"
                 >
                   {type.type.name}
                 </h1>
@@ -232,9 +313,7 @@ const Pokeman: NextPage = ({ pokeman }: any) => {
             })}
           </div>
         </div>
-        <h1 className="mt-3">Height: {pokeman.height}</h1>
-        <h1 className="mb-10">Weight: {pokeman.weight}</h1>
-        <div className="">
+        <div>
           <h1 className="mt-3 mb-3 italic uppercase text-3xl font-montserrat">
             Base Stats:
           </h1>
@@ -248,40 +327,113 @@ const Pokeman: NextPage = ({ pokeman }: any) => {
             );
           })}
         </div>
-        <div>
-          <h1 className="mt-3 mb-10 italic uppercase text-3xl font-montserrat">
-            Encounters:
-          </h1>
-          <div className="grid grid-cols-3">{encounters}</div>
-        </div>
-        <div>
-          <h1 className="mt-3 mb-10 italic uppercase text-3xl font-montserrat">
-            Moves:
-          </h1>
-          <div className="grid grid-rows-3 grid-cols-4">
-            {pokeman.moves.map((move: any) => {
-              return (
-                <Link href={`/moves/${move.move.name}`}>
-                  <div className="m-5">
-                    <a
-                      key={move.move.name}
-                      className="capitalize m-5 text-red-600 font-medium text-xl bg-slate-300 py-3 px-8 rounded-xl shadow-lg shadow-gray-600 hover:bg-slate-600 transition-all duration-200 hover:cursor-pointer"
-                    >
-                      {move.move.name.replace("-", " ")}
-                    </a>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
+
+        <h1 className="mt-2">Height: {pokeman.height}</h1>
+        <h1 className="mb-3">Weight: {pokeman.weight}</h1>
       </div>
     );
   };
 
   const content = getPokeData();
 
-  return <div>{content}</div>;
+  return (
+    <div className={`${typeCSS} mt-[-8rem] overflow-y-hidden`}>
+      <div className={`m-10 text-center text-slate-50 text-xl overflow-hidden`}>
+        <h1 className="text-5xl uppercase font-light font-montserrat pt-[6rem] overflow-hidden">
+          {pokeman.id}: {pokeman.name}
+        </h1>
+        <h1 className="text-3xl uppercase font-light font-montserrat pt-[1rem] overflow-hidden">
+          {evolution.generation.name
+            .replace("-", " ")
+            .replace(" iii", " 3")
+            .replace(" ii", " 2")
+            .replace(" iv", " 4")
+            .replace(" viii", " 8")
+            .replace(" vii", " 7")
+            .replace(" vi", " 6")
+            .replace(" v", " 5")
+            .replace(" i", " 1")}
+        </h1>
+      </div>
+      <img
+        src={pokeman.sprites.front_default}
+        className={`m-auto w-[30rem] h-[30rem] object-fill ${
+          buttonColor != "" ? buttonColor : "bg-slate-300"
+        } rounded-full mb-10 mt-10 shadow-2xl ${shadowColor} overflow-hidden `}
+      ></img>
+      {content}
+      <div className="text-center text-2xl text-slate-50 capitalize">
+        Evolves From:{" "}
+        {evolution?.evolves_from_species?.name ? (
+          <Link href={`/pokemon/${evolution.evolves_from_species.name}`}>
+            <a
+              className={`capitalize m-1 text-slate-50 font-medium text-xl  py-3 px-8 rounded-xl shadow-xl ${shadowColor} ${
+                buttonColor != "" ? buttonColor : "bg-slate-300"
+              } ${
+                hoverColor != "" ? hoverColor : "hover:bg-slate-600"
+              } transition-all duration-200 hover:cursor-pointer`}
+            >
+              {evolution.evolves_from_species.name}
+            </a>
+          </Link>
+        ) : (
+          "Is not an evolution"
+        )}
+      </div>
+      <div className="text-center overflow-hidden">
+        <h1 className="mt-3 mb-10 italic uppercase text-3xl font-montserrat text-slate-50 overflow-hidden">
+          Encounters:{" "}
+        </h1>
+        <div className="grid grid-rows-3 grid-cols-3 py-3 overflow-hidden">
+          {data.map((encounter: any) => {
+            let encounterArea = encounter.location_area.name;
+            return (
+              <div className="m-5">
+                <Link href={`/locations/${encounterArea}`}>
+                  <a
+                    className={`capitalize m-5 text-slate-50 font-medium text-xl  py-3 px-8 rounded-xl shadow-xl ${shadowColor} ${
+                      buttonColor != "" ? buttonColor : "bg-slate-300"
+                    } ${
+                      hoverColor != "" ? hoverColor : "hover:bg-slate-600"
+                    } transition-all duration-200 hover:cursor-pointer`}
+                  >
+                    {encounter.location_area.name
+                      .replace("-", " ")
+                      .replace("-area", "")
+                      .replace("-road", " road")}
+                  </a>
+                </Link>
+              </div>
+            );
+          })}
+          ;
+        </div>
+        <h1 className="mt-3 mb-10 italic uppercase text-3xl font-montserrat text-slate-50 overflow-hidden">
+          Moves:
+        </h1>
+        <div className="grid grid-rows-3 grid-cols-6 py-3 overflow-hidden mx-10">
+          {pokeman.moves.map((move: any) => {
+            return (
+              <Link href={`/moves/${move.move.name}`}>
+                <div className="m-5 mx-3">
+                  <a
+                    key={move.move.name}
+                    className={`capitalize m-5 text-slate-50 font-medium text-xl  py-3 px-8 rounded-xl shadow-xl ${shadowColor} ${
+                      buttonColor != "" ? buttonColor : "bg-slate-300"
+                    } ${
+                      hoverColor != "" ? hoverColor : "hover:bg-slate-600"
+                    } transition-all duration-200 hover:cursor-pointer`}
+                  >
+                    {move.move.name.replace("-", " ")}
+                  </a>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Pokeman;

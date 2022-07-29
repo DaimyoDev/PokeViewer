@@ -1,7 +1,9 @@
 import type { NextPage } from "next";
 import Link from "next/link";
+import { useState } from "react";
 
 const Move: NextPage = ({ move }: any) => {
+  const [search, setSearch] = useState("");
   const getMoveName = () => {
     if (move.type.name == "normal") {
       return (
@@ -140,7 +142,7 @@ const Move: NextPage = ({ move }: any) => {
     }
     return (
       <div>
-        <h1 className="text-5xl text-center uppercase text-slate-50">
+        <h1 className="text-5xl text-center uppercase text-slate-50 font-montserrat font-light">
           {move.id}: {move.name.replace("-", " ")}
         </h1>
       </div>
@@ -151,7 +153,7 @@ const Move: NextPage = ({ move }: any) => {
 
   const getMoveData = () => {
     return (
-      <div className="text-3xl text-slate-50">
+      <div className="text-2xl text-slate-50">
         <h1 className="m-3">
           Accuracy: {move.accuracy ? move.accuracy : "No data found"}
         </h1>
@@ -175,21 +177,65 @@ const Move: NextPage = ({ move }: any) => {
             );
           })}
         </h1>
+        <div>
+          <h1 className="m-3"> Move Description: </h1>
+          {move.effect_entries.map((effect: any) => {
+            return (
+              <div className="mx-10">
+                <h1>
+                  {effect.effect.replace(
+                    "$effect_chance",
+                    `${move.effect_chance}`
+                  )}
+                </h1>
+              </div>
+            );
+          })}
+        </div>
         <div className="overflow-hidden">
-          <h1 className="capitalize mb-10 mt-3">
+          <h1 className="capitalize mb-5 mt-3">
             Pokemon Who Learn {move.name.replace("-", " ")}:
           </h1>
+          <div className="mb-7">
+            <label htmlFor="search" className="text-xl text-slate-50 mr-3">
+              Search Pokemon:
+            </label>
+            <input
+              type="search"
+              onChange={(e) => {
+                const search = () => {
+                  setSearch(e.target.value);
+                };
+                setTimeout(search, 1000);
+              }}
+              className="text-black text-xl"
+            ></input>
+          </div>
           <div className="grid grid-rows-4 grid-cols-5">
             {move.learned_by_pokemon.map((learned: any) => {
-              return (
-                <div className="m-5">
-                  <Link href={`/pokemon/${learned.name}`}>
-                    <a className="text-red-600 font-medium text-xl bg-slate-300 py-3 px-8 rounded-xl shadow-lg shadow-gray-600 hover:bg-slate-600 transition-all duration-200 m-3 capitalize">
-                      {learned.name}
-                    </a>
-                  </Link>
-                </div>
-              );
+              if (search == "") {
+                return (
+                  <div className="m-5">
+                    <Link href={`/pokemon/${learned.name}`}>
+                      <a className="text-red-600 font-medium text-xl bg-slate-300 py-3 px-8 rounded-xl shadow-lg shadow-gray-600 hover:bg-slate-600 transition-all duration-200 m-3 capitalize">
+                        {learned.name}
+                      </a>
+                    </Link>
+                  </div>
+                );
+              } else {
+                if (learned.name.includes(search)) {
+                  return (
+                    <div className=" m-5">
+                      <Link href={`/pokemon/${learned.name}`}>
+                        <a className="capitalize m-3 text-red-600 font-medium text-xl bg-slate-300 py-3 px-8 rounded-xl shadow-lg shadow-gray-600 hover:bg-slate-600 transition-all duration-200 ">
+                          {learned.name.replace("-", " ")}
+                        </a>
+                      </Link>
+                    </div>
+                  );
+                }
+              }
             })}
           </div>
         </div>
@@ -201,7 +247,7 @@ const Move: NextPage = ({ move }: any) => {
 
   return (
     <div className="flex flex-col text-center">
-      <h1 className="mb-10">{moveName}</h1>
+      <h1 className="mb-4">{moveName}</h1>
       <h1>{moveData}</h1>
     </div>
   );
