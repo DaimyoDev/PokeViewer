@@ -1,7 +1,39 @@
 import type { NextPage } from "next";
 import Link from "next/link";
+import { useState, useMemo } from "react";
 
 const Pokeman: NextPage = ({ pokeman }: any) => {
+  const [data, setData] = useState([]);
+  let encounters: any = [];
+
+  useMemo(async () => {
+    const response = await fetch(
+      `https://pokeapi.co/api/v2/pokemon/${pokeman.name}/encounters`
+    );
+
+    setData(await response.json());
+  }, [pokeman]);
+
+  const getEncounters = () => {
+    data.map((encounter: any) => {
+      let encounterArea = encounter.location_area.name.replace("-area", "");
+      encounters.push(
+        <div className="m-5">
+          <Link href={`/locations/${encounterArea}`}>
+            <a className="capitalize m-3 text-red-600 font-medium text-xl bg-slate-300 py-3 px-8 rounded-xl shadow-lg shadow-gray-600 hover:bg-slate-600 transition-all duration-200">
+              {encounter.location_area.name
+                .replace("-", " ")
+                .replace("-area", "")
+                .replace("-road", " road")}
+            </a>
+          </Link>
+        </div>
+      );
+    });
+  };
+
+  getEncounters();
+
   const getPokeData = () => {
     return (
       <div className={`m-10 text-center text-slate-50 text-xl`}>
@@ -207,7 +239,6 @@ const Pokeman: NextPage = ({ pokeman }: any) => {
             Base Stats:
           </h1>
           {pokeman.stats.map((stat: any) => {
-            console.log(stat);
             return (
               <div className="flex flex-row justify-center mb-2 uppercase">
                 <h1>
@@ -216,6 +247,12 @@ const Pokeman: NextPage = ({ pokeman }: any) => {
               </div>
             );
           })}
+        </div>
+        <div>
+          <h1 className="mt-3 mb-10 italic uppercase text-3xl font-montserrat">
+            Encounters:
+          </h1>
+          <div className="grid grid-cols-3">{encounters}</div>
         </div>
         <div>
           <h1 className="mt-3 mb-10 italic uppercase text-3xl font-montserrat">

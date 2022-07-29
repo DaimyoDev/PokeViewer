@@ -4,25 +4,32 @@ import Link from "next/link";
 
 const Location: NextPage = ({ location }: any) => {
   const [data, setData] = useState({
-    pokemon_encounters: [],
+    region: {
+      name: "",
+    },
   });
 
-  useMemo(() => {
-    location.areas.map(async (area: any) => {
-      const response = await fetch(
-        `https://pokeapi.co/api/v2/location-area/${area.name}`
-      );
-      setData(await response.json());
-    });
+  useMemo(async () => {
+    const response = await fetch(
+      `https://pokeapi.co/api/v2/location/${location.name.replace("-area", "")}`
+    );
+
+    if (response) {
+      try {
+        setData(await response.json());
+      } catch (e) {
+        console.log(e);
+      }
+    }
   }, [location]);
 
   const getLocationName = () => {
     return (
       <div>
         <h1 className="text-5xl text-center uppercase text-slate-50 font-montserrat font-light">
-          {location.name.replace("-", " ")}
+          {location.name.replace("-", " ").replace("-area", " ")}
         </h1>
-        <div>{}</div>
+        <div></div>
       </div>
     );
   };
@@ -30,28 +37,26 @@ const Location: NextPage = ({ location }: any) => {
   const locationName = getLocationName();
 
   const getLocationData = () => {
-    let content: any = [];
-    data?.pokemon_encounters.map((encounters: any) => {
-      content.push(
-        <div className="m-5">
-          <Link href={`/pokemon/${encounters.pokemon.name}`}>
-            <a className="capitalize m-3 text-red-600 font-medium text-xl bg-slate-300 py-3 px-8 rounded-xl shadow-lg shadow-gray-600 hover:bg-slate-600 transition-all duration-200">
-              {encounters.pokemon.name}
-            </a>
-          </Link>
-        </div>
-      );
-    });
     return (
       <div className="text-3xl text-slate-50 capitalize">
-        <h1 className="m-3">
-          Region: {location.region?.name ? location.region.name : "No region"}
-        </h1>
+        <h1 className="m-3">Region: {data.region.name || "Data not found"}</h1>
         <div>
           <h1 className="text-3xl text-center text-slate-50 m-3 mb-6">
             Pokemon Encounters:
           </h1>
-          <div className="grid grid-rows-5 grid-cols-5">{content}</div>
+          <div className="grid grid-rows-5 grid-cols-5">
+            {location.pokemon_encounters.map((encounter: any) => {
+              return (
+                <div className="m-5">
+                  <Link href={`/pokemon/${encounter.pokemon.name}`}>
+                    <a className="capitalize m-3 text-red-600 font-medium text-xl bg-slate-300 py-3 px-8 rounded-xl shadow-lg shadow-gray-600 hover:bg-slate-600 transition-all duration-200">
+                      {encounter.pokemon.name}
+                    </a>
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     );
@@ -71,7 +76,7 @@ export default Location;
 
 export const getStaticPaths = async () => {
   const response = await fetch(
-    "https://pokeapi.co/api/v2/location?limit=100000&offset=0"
+    "https://pokeapi.co/api/v2/location-area?limit=100000&offset=0"
   );
   const data = await response.json();
 
@@ -89,7 +94,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }: any) => {
   const response = await fetch(
-    `https://pokeapi.co/api/v2/location/${params.location}`
+    `https://pokeapi.co/api/v2/location-area/${params.location}`
   );
 
   const data = await response.json();
