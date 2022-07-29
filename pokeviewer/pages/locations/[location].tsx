@@ -45,7 +45,7 @@ const Location: NextPage = ({ location }: any) => {
           <h1 className="text-3xl text-center text-slate-50 m-3 mb-6">
             Pokemon Encounters:
           </h1>
-          <div className="grid sm:grid-rows-5 sm:grid-cols-5">
+          <div className="grid sm:grid-rows-5 xl:grid-cols-5 md:grid-cols-2">
             {location.pokemon_encounters.map((encounter: any) => {
               return (
                 <div className="m-5">

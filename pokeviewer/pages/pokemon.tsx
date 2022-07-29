@@ -20,7 +20,7 @@ const Pokemon: NextPage = ({ pokemon }: any) => {
         }}
       ></input>
 
-      <div className="grid sm:grid-rows-4 sm:grid-cols-5 mt-10">
+      <div className="grid lg:grid-rows-4 lg:grid-cols-5 mt-10 md:grid-cols-2">
         {pokemon.results.map((pokeman: any) => {
           if (search == "") {
             return (

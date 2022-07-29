@@ -30,7 +30,7 @@ const Item: NextPage = ({ item }: any) => {
       <h1 className="text-center text-slate-50 text-4xl mt-5 capitalize mb-10 font-montserrat font-light">
         Held By Pokemon:
       </h1>
-      <div className="grid sm:grid-rows-4 sm:grid-cols-5 text-center">
+      <div className="grid sm:grid-rows-4 xl:grid-cols-5 text-center lg:grid-cols-3">
         {item.held_by_pokemon.map((pokemon: any) => {
           console.log(pokemon);
           return (

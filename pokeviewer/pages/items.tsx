@@ -18,7 +18,7 @@ const Items: NextPage = ({ items }: any) => {
           setSearch(e.target.value);
         }}
       ></input>
-      <div className="grid sm:grid-rows-4 sm:grid-cols-5 mt-10">
+      <div className="grid xl:grid-rows-4 xl:grid-cols-5 mt-10 md:grid-cols-2">
         {items.results.map((item: any) => {
           if (search == "") {
             return (

@@ -285,7 +285,7 @@ const Move: NextPage = ({ move }: any) => {
               className="text-black text-xl"
             ></input>
           </div>
-          <div className="grid sm:grid-rows-4 sm:grid-cols-5">
+          <div className="grid xl:grid-rows-4 xl:grid-cols-5 md:grid-cols-3">
             {move.learned_by_pokemon.map((learned: any) => {
               if (search == "") {
                 return (

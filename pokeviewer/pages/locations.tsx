@@ -19,7 +19,7 @@ const Moves: NextPage = ({ locations }: any) => {
           setSearch(e.target.value);
         }}
       ></input>
-      <div className="grid sm:grid-rows-4 sm:grid-cols-3 mt-10">
+      <div className="grid xl:grid-rows-4 xl:grid-cols-2 mt-10  2xl:grid-cols-3">
         {locations.results.map((location: any) => {
           if (search == "") {
             return (
