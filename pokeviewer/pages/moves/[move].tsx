@@ -4,6 +4,10 @@ import { useState } from "react";
 
 const Move: NextPage = ({ move }: any) => {
   const [search, setSearch] = useState("");
+  let typeCSS = "";
+  let buttonColor = "";
+  let shadowColor = "";
+  let hoverColor = "";
   const getMoveName = () => {
     if (move.type.name == "normal") {
       return (
@@ -15,24 +19,36 @@ const Move: NextPage = ({ move }: any) => {
       );
     }
     if (move.type.name == "fire") {
+      typeCSS = "bg-red-800";
+      buttonColor = "bg-red-500";
+      shadowColor = "shadow-red-900";
+      hoverColor = "hover:bg-red-300";
       return (
         <div>
-          <h1 className="text-5xl text-center uppercase text-red-500 font-montserrat">
+          <h1 className="text-5xl text-center uppercase text-red-300 font-montserrat">
             {move.id}: {move.name.replace("-", " ")}
           </h1>
         </div>
       );
     }
     if (move.type.name == "flying") {
+      typeCSS = "bg-slate-800";
+      buttonColor = "bg-slate-500";
+      shadowColor = "shadow-slate-900";
+      hoverColor = "hover:bg-slate-300";
       return (
         <div>
-          <h1 className="text-5xl text-center uppercase text-slate-700 font-montserrat">
+          <h1 className="text-5xl text-center uppercase text-slate-300 font-montserrat">
             {move.id}: {move.name.replace("-", " ")}
           </h1>
         </div>
       );
     }
     if (move.type.name == "ice") {
+      typeCSS = "bg-sky-800";
+      buttonColor = "bg-sky-500";
+      shadowColor = "shadow-sky-900";
+      hoverColor = "hover:bg-sky-300";
       return (
         <div>
           <h1 className="text-5xl text-center uppercase text-sky-300 font-montserrat">
@@ -42,60 +58,89 @@ const Move: NextPage = ({ move }: any) => {
       );
     }
     if (move.type.name == "water") {
+      typeCSS = "bg-blue-800";
+      buttonColor = "bg-blue-500";
+      shadowColor = "shadow-blue-900";
+      hoverColor = "hover:bg-blue-300";
       return (
         <div>
-          <h1 className="text-5xl text-center uppercase text-blue-700 font-montserrat">
+          <h1 className="text-5xl text-center uppercase text-blue-300 font-montserrat">
             {move.id}: {move.name.replace("-", " ")}
           </h1>
         </div>
       );
     }
     if (move.type.name == "poison") {
+      typeCSS = "bg-violet-800";
+      buttonColor = "bg-violet-500";
+      shadowColor = "shadow-violet-900";
+      hoverColor = "hover:bg-violet-300";
       return (
         <div>
-          <h1 className="text-5xl text-center uppercase text-violet-700 font-montserrat">
+          <h1 className="text-5xl text-center uppercase text-violet-300 font-montserrat">
             {move.id}: {move.name.replace("-", " ")}
           </h1>
         </div>
       );
     }
     if (move.type.name == "bug") {
+      typeCSS = "bg-lime-800";
+      buttonColor = "bg-lime-500";
+      shadowColor = "shadow-lime-900";
+      hoverColor = "hover:bg-lime-400";
       return (
         <div>
-          <h1 className="text-5xl text-center uppercase text-lime-500 font-montserrat">
+          <h1 className="text-5xl text-center uppercase text-lime-300 font-montserrat">
             {move.id}: {move.name.replace("-", " ")}
           </h1>
         </div>
       );
     }
     if (move.type.name == "fighting") {
+      typeCSS = "bg-orange-700";
+      buttonColor = "bg-orange-500";
+      shadowColor = "shadow-orange-900";
+      hoverColor = "hover:bg-orange-400";
       return (
         <div>
-          <h1 className="text-5xl text-center uppercase text-orange-500 font-montserrat">
+          <h1 className="text-5xl text-center uppercase text-orange-300 font-montserrat">
             {move.id}: {move.name.replace("-", " ")}
           </h1>
         </div>
       );
     }
     if (move.type.name == "fairy") {
+      typeCSS = "bg-pink-800";
+      buttonColor = "bg-pink-500";
+      shadowColor = "shadow-pink-900";
+      hoverColor = "hover:bg-pink-400";
       return (
         <div>
-          <h1 className="text-5xl text-center uppercase text-pink-500 font-montserrat">
+          <h1 className="text-5xl text-center uppercase text-pink-300 font-montserrat">
             {move.id}: {move.name.replace("-", " ")}
           </h1>
         </div>
       );
     }
     if (move.type.name == "psychic") {
+      typeCSS = "bg-fuchsia-800";
+      buttonColor = "bg-fuchsia-500";
+      shadowColor = "shadow-fuchsia-900";
+      hoverColor = "hover:bg-fuchsia-400";
+
       return (
         <div>
-          <h1 className="text-5xl text-center uppercase text-pink-700 font-montserrat">
+          <h1 className="text-5xl text-center uppercase text-fuchsia-300 font-montserrat">
             {move.id}: {move.name.replace("-", " ")}
           </h1>
         </div>
       );
     }
     if (move.type.name == "dragon") {
+      typeCSS = "bg-black";
+      buttonColor = "bg-slate-700";
+      shadowColor = "shadow-slate-900";
+      hoverColor = "hover:bg-slate-500";
       return (
         <div>
           <h1 className="text-5xl text-center uppercase text-black font-montserrat">
@@ -105,15 +150,23 @@ const Move: NextPage = ({ move }: any) => {
       );
     }
     if (move.type.name == "steel") {
+      typeCSS = "bg-gray-400";
+      buttonColor = "bg-gray-300";
+      shadowColor = "shadow-gray-500";
+      hoverColor = "hover:bg-gray-200";
       return (
         <div>
-          <h1 className="text-5xl text-center uppercase text-gray-300 font-montserrat">
+          <h1 className="text-5xl text-center uppercase text-gray-100 font-montserrat">
             {move.id}: {move.name.replace("-", " ")}
           </h1>
         </div>
       );
     }
     if (move.type.name == "electric") {
+      typeCSS = "bg-yellow-600";
+      buttonColor = "bg-yellow-400";
+      shadowColor = "shadow-yellow-700";
+      hoverColor = "hover:bg-yellow-300";
       return (
         <div>
           <h1 className="text-5xl text-center uppercase text-yellow-300 font-montserrat">
@@ -123,18 +176,39 @@ const Move: NextPage = ({ move }: any) => {
       );
     }
     if (move.type.name == "grass") {
+      typeCSS = "bg-emerald-800";
+      buttonColor = "bg-emerald-500";
+      shadowColor = "shadow-emerald-900";
+      hoverColor = "hover:bg-emerald-300";
       return (
         <div>
-          <h1 className="text-5xl text-center uppercase text-emerald-500 font-montserrat">
+          <h1 className="text-5xl text-center uppercase text-emerald-300 font-montserrat">
             {move.id}: {move.name.replace("-", " ")}
           </h1>
         </div>
       );
     }
     if (move.type.name == "rock") {
+      typeCSS = "bg-amber-600";
+      buttonColor = "bg-amber-500";
+      shadowColor = "shadow-amber-700";
+      hoverColor = "hover:bg-amber-300";
       return (
         <div>
-          <h1 className="text-5xl text-center uppercase text-amber-700 font-montserrat">
+          <h1 className="text-5xl text-center uppercase text-amber-300 font-montserrat">
+            {move.id}: {move.name.replace("-", " ")}
+          </h1>
+        </div>
+      );
+    }
+    if (move.type.name == "ground") {
+      typeCSS = "bg-amber-800";
+      buttonColor = "bg-amber-700";
+      shadowColor = "shadow-amber-900";
+      hoverColor = "hover:bg-amber-600";
+      return (
+        <div>
+          <h1 className="text-5xl text-center uppercase text-amber-600 font-montserrat">
             {move.id}: {move.name.replace("-", " ")}
           </h1>
         </div>
@@ -153,7 +227,7 @@ const Move: NextPage = ({ move }: any) => {
 
   const getMoveData = () => {
     return (
-      <div className="text-2xl text-slate-50">
+      <div className={`text-2xl text-slate-50`}>
         <h1 className="m-3">
           Accuracy: {move.accuracy ? move.accuracy : "No data found"}
         </h1>
@@ -178,10 +252,10 @@ const Move: NextPage = ({ move }: any) => {
           })}
         </h1>
         <div>
-          <h1 className="m-3"> Move Description: </h1>
+          <h1 className="mt-3"> Move Description: </h1>
           {move.effect_entries.map((effect: any) => {
             return (
-              <div className="mx-10">
+              <div className="mx-[15rem] text-xl font-semibold">
                 <h1>
                   {effect.effect.replace(
                     "$effect_chance",
@@ -217,7 +291,13 @@ const Move: NextPage = ({ move }: any) => {
                 return (
                   <div className="m-5">
                     <Link href={`/pokemon/${learned.name}`}>
-                      <a className="text-red-600 font-medium text-xl bg-slate-300 py-3 px-8 rounded-xl shadow-lg shadow-gray-600 hover:bg-slate-600 transition-all duration-200 m-3 capitalize">
+                      <a
+                        className={`capitalize m-5 text-slate-50 font-medium text-xl  py-3 px-8 rounded-xl shadow-xl ${shadowColor} ${
+                          buttonColor != "" ? buttonColor : "bg-slate-400"
+                        } ${
+                          hoverColor != "" ? hoverColor : "hover:bg-slate-600"
+                        } transition-all duration-200 hover:cursor-pointer`}
+                      >
                         {learned.name}
                       </a>
                     </Link>
@@ -228,7 +308,13 @@ const Move: NextPage = ({ move }: any) => {
                   return (
                     <div className=" m-5">
                       <Link href={`/pokemon/${learned.name}`}>
-                        <a className="capitalize m-3 text-red-600 font-medium text-xl bg-slate-300 py-3 px-8 rounded-xl shadow-lg shadow-gray-600 hover:bg-slate-600 transition-all duration-200 ">
+                        <a
+                          className={`capitalize m-5 text-slate-50 font-medium text-xl  py-3 px-8 rounded-xl shadow-xl ${shadowColor} ${
+                            buttonColor != "" ? buttonColor : "bg-slate-400"
+                          } ${
+                            hoverColor != "" ? hoverColor : "hover:bg-slate-600"
+                          } transition-all duration-200 hover:cursor-pointer`}
+                        >
                           {learned.name.replace("-", " ")}
                         </a>
                       </Link>
@@ -246,9 +332,13 @@ const Move: NextPage = ({ move }: any) => {
   const moveData = getMoveData();
 
   return (
-    <div className="flex flex-col text-center">
-      <h1 className="mb-4">{moveName}</h1>
-      <h1>{moveData}</h1>
+    <div
+      className={`flex flex-col text-center ${typeCSS} overflow-y-hidden pointer-events-none mt-[-5.5rem]`}
+    >
+      <h1 className="mb-4 pt-[7rem]">{moveName}</h1>
+      <div className={`pb-5 mb-3 pointer-events-auto ${typeCSS} min-h-screen`}>
+        {moveData}
+      </div>
     </div>
   );
 };

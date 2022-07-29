@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Navbar: any = () => {
   return (
-    <div className="flex flex-row w-screen text-xl py-5 text-slate-50 overflow-hidden">
+    <div className="flex flex-row w-screen text-xl py-5 text-slate-50 overflow-hidden z-20">
       <h1 className="justify-self-start text-3xl ml-[10rem] mt-[-0.30rem] font-light italic tracking-widest font-montserrat">
         <span className="text-4xl text-red-500">Poke</span>Viewer
       </h1>

@@ -275,9 +275,9 @@ const Pokeman: NextPage = ({ pokeman }: any) => {
               }
               if (type.type.name == "rock") {
                 typeCSS = "bg-amber-600";
-                buttonColor = "bg-amber-300";
+                buttonColor = "bg-amber-500";
                 shadowColor = "shadow-amber-700";
-                hoverColor = "hover:bg-amber-100";
+                hoverColor = "hover:bg-amber-300";
                 return (
                   <h1
                     key={type.type.name}
@@ -305,7 +305,7 @@ const Pokeman: NextPage = ({ pokeman }: any) => {
               return (
                 <h1
                   key={type.type.name}
-                  className="capitalize text-slate-700 text-2xl"
+                  className="capitalize text-slate-500 text-2xl"
                 >
                   {type.type.name}
                 </h1>
@@ -359,7 +359,7 @@ const Pokeman: NextPage = ({ pokeman }: any) => {
         src={pokeman.sprites.front_default}
         className={`m-auto w-[30rem] h-[30rem] object-fill ${
           buttonColor != "" ? buttonColor : "bg-slate-300"
-        } rounded-full mb-10 mt-10 shadow-2xl ${shadowColor} overflow-hidden `}
+        } rounded-full mb-10 mt-10 shadow-xl ${shadowColor}  `}
       ></img>
       {content}
       <div className="text-center text-2xl text-slate-50 capitalize">
@@ -368,7 +368,7 @@ const Pokeman: NextPage = ({ pokeman }: any) => {
           <Link href={`/pokemon/${evolution.evolves_from_species.name}`}>
             <a
               className={`capitalize m-1 text-slate-50 font-medium text-xl  py-3 px-8 rounded-xl shadow-xl ${shadowColor} ${
-                buttonColor != "" ? buttonColor : "bg-slate-300"
+                buttonColor != "" ? buttonColor : "bg-slate-400"
               } ${
                 hoverColor != "" ? hoverColor : "hover:bg-slate-600"
               } transition-all duration-200 hover:cursor-pointer`}
@@ -381,18 +381,18 @@ const Pokeman: NextPage = ({ pokeman }: any) => {
         )}
       </div>
       <div className="text-center overflow-hidden">
-        <h1 className="mt-3 mb-10 italic uppercase text-3xl font-montserrat text-slate-50 overflow-hidden">
+        <h1 className="mt-7 mb-1 italic uppercase text-3xl font-montserrat text-slate-50 overflow-hidden">
           Encounters:{" "}
         </h1>
         <div className="grid grid-rows-3 grid-cols-3 py-3 overflow-hidden">
           {data.map((encounter: any) => {
             let encounterArea = encounter.location_area.name;
             return (
-              <div className="m-5">
+              <div className="m-5 mb-3">
                 <Link href={`/locations/${encounterArea}`}>
                   <a
                     className={`capitalize m-5 text-slate-50 font-medium text-xl  py-3 px-8 rounded-xl shadow-xl ${shadowColor} ${
-                      buttonColor != "" ? buttonColor : "bg-slate-300"
+                      buttonColor != "" ? buttonColor : "bg-slate-400"
                     } ${
                       hoverColor != "" ? hoverColor : "hover:bg-slate-600"
                     } transition-all duration-200 hover:cursor-pointer`}
@@ -419,7 +419,7 @@ const Pokeman: NextPage = ({ pokeman }: any) => {
                   <a
                     key={move.move.name}
                     className={`capitalize m-5 text-slate-50 font-medium text-xl  py-3 px-8 rounded-xl shadow-xl ${shadowColor} ${
-                      buttonColor != "" ? buttonColor : "bg-slate-300"
+                      buttonColor != "" ? buttonColor : "bg-slate-400"
                     } ${
                       hoverColor != "" ? hoverColor : "hover:bg-slate-600"
                     } transition-all duration-200 hover:cursor-pointer`}
