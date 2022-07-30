@@ -278,7 +278,7 @@ const Move: NextPage = ({ move }: any) => {
               type="search"
               onChange={(e) => {
                 const search = () => {
-                  setSearch(e.target.value);
+                  setSearch(e.target.value.toLowerCase());
                 };
                 setTimeout(search, 1000);
               }}

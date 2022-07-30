@@ -16,7 +16,7 @@ const Moves: NextPage = ({ moves }: any) => {
       <input
         type="search"
         onChange={(e) => {
-          setSearch(e.target.value);
+          setSearch(e.target.value.toLowerCase());
         }}
       ></input>
       <div className="grid sm:grid-rows-4 sm:grid-cols-5 mt-10">

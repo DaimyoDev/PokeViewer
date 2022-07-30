@@ -16,7 +16,7 @@ const Pokemon: NextPage = ({ pokemon }: any) => {
       <input
         type="search"
         onChange={(e) => {
-          setSearch(e.target.value);
+          setSearch(e.target.value.toLowerCase());
         }}
       ></input>
 

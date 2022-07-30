@@ -406,7 +406,6 @@ const Pokeman: NextPage = ({ pokeman }: any) => {
               </div>
             );
           })}
-          ;
         </div>
         <h1 className="mt-3 mb-10 italic uppercase text-3xl font-montserrat text-slate-50 overflow-hidden">
           Moves:
