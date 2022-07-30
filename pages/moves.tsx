@@ -19,7 +19,7 @@ const Moves: NextPage = ({ moves }: any) => {
           setSearch(e.target.value.toLowerCase());
         }}
       ></input>
-      <div className="grid sm:grid-rows-4 sm:grid-cols-5 mt-10">
+      <div className="grid sm:grid-rows-4 xl:grid-cols-5 mt-10 md:grid-cols-3">
         {moves.results.map((move: any) => {
           if (search == "") {
             return (
