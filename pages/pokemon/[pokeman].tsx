@@ -305,7 +305,7 @@ const Pokeman: NextPage = ({ pokeman }: any) => {
               return (
                 <h1
                   key={type.type.name}
-                  className="capitalize text-slate-500 text-2xl"
+                  className="capitalize text-slate-100 text-2xl"
                 >
                   {type.type.name}
                 </h1>
